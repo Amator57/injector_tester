@@ -1,0 +1,365 @@
+/* =========================================================
+   Injector Tester
+   style.css
+   ========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    background:#f4f6f8;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    color:#222;
+
+    padding:20px;
+}
+
+.container{
+
+    max-width:760px;
+
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+
+    margin-bottom:20px;
+
+    color:#1976d2;
+}
+
+.card{
+    background:#ffffff;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+
+.card h2{
+    margin-bottom:16px;
+
+    color:#1565c0;
+
+    border-bottom:1px solid #ddd;
+
+    padding-bottom:8px;
+}
+
+label{
+    display:block;
+
+    margin-top:14px;
+
+    margin-bottom:6px;
+
+    font-weight:bold;
+}
+
+input[type=text],
+input[type=password],
+input[type=number]{
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #bbb;
+
+    border-radius:6px;
+
+    font-size:16px;
+}
+
+select{
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #bbb;
+
+    border-radius:6px;
+
+    font-size:16px;
+
+    background:#ffffff;
+}
+
+input:disabled,
+select:disabled{
+    background:#eeeeee;
+
+    color:#777777;
+}
+
+.row.check{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:14px;
+}
+
+.row.check label{
+    margin:0;
+}
+
+.passwordBox{
+    display:flex;
+
+    gap:8px;
+}
+
+.passwordBox input{
+    flex:1;
+}
+
+.passwordBox button{
+    width:52px;
+}
+
+/* ===================== Статистика ===================== */
+
+.statgrid{
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+    gap:10px;
+}
+
+.stat{
+    background:#f0f4f8;
+
+    border-radius:8px;
+
+    padding:10px 12px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+.statlabel{
+    font-size:13px;
+
+    color:#666;
+}
+
+.stat > span:last-child{
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:4px 12px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    color:#fff;
+
+    width:fit-content;
+}
+
+.badge.idle{
+    background:#78909c;
+}
+
+.badge.pulse{
+    background:#2e7d32;
+}
+
+.badge.gap{
+    background:#f9a825;
+}
+
+.badge.burst_wait{
+    background:#ef6c00;
+}
+
+.badge.hold{
+    background:#c62828;
+}
+
+.badge.done{
+    background:#1565c0;
+}
+
+/* ===================== Кнопки ===================== */
+
+.bigbuttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.buttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:25px;
+}
+
+button{
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:6px;
+
+    padding:12px 24px;
+
+    font-size:16px;
+
+    background:#1976d2;
+
+    color:white;
+
+    transition:0.2s;
+}
+
+button:hover{
+    background:#0d47a1;
+}
+
+button:active{
+    transform:scale(0.97);
+}
+
+button:disabled{
+    background:#9e9e9e;
+
+    cursor:not-allowed;
+}
+
+.btn-start{
+    background:#2e7d32;
+
+    font-size:18px;
+
+    padding:14px 40px;
+}
+
+.btn-start:hover{
+    background:#1b5e20;
+}
+
+.btn-stop{
+    background:#c62828;
+
+    font-size:18px;
+
+    padding:14px 40px;
+}
+
+.btn-stop:hover{
+    background:#8e0000;
+}
+
+.btn-single{
+    background:#5e35b1;
+
+    font-size:18px;
+
+    padding:14px 30px;
+}
+
+.btn-single:hover{
+    background:#4527a0;
+}
+
+.btn-danger{
+    background:#c62828;
+}
+
+.btn-danger:hover{
+    background:#8e0000;
+}
+
+/* ===================== Підказки ===================== */
+
+.hint{
+    margin-top:10px;
+
+    font-size:14px;
+
+    color:#555;
+
+    background:#eef3f9;
+
+    border-radius:6px;
+
+    padding:8px 10px;
+}
+
+/* ===================== Toast ===================== */
+
+#toast{
+    position:fixed;
+
+    left:50%;
+
+    bottom:24px;
+
+    transform:translateX(-50%);
+
+    background:#333;
+
+    color:#fff;
+
+    padding:12px 24px;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:opacity 0.3s;
+
+    max-width:90%;
+
+    text-align:center;
+}
+
+#toast.show{
+    opacity:0.95;
+}
+
+@media (max-width:480px){
+    .bigbuttons button{
+        width:100%;
+    }
+}

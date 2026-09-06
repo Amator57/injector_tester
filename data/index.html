@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Тестер форсунок</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚙ Тестер і очистник форсунок</h1>
+
+<!-- ======================================== -->
+<!-- STATUS -->
+<!-- ======================================== -->
+
+<div class="card">
+
+<h2>Стан</h2>
+
+<div class="statgrid">
+
+<div class="stat">
+<span class="statlabel">Стан</span>
+<span id="stState" class="badge idle">Готовий</span>
+</div>
+
+<div class="stat">
+<span class="statlabel">Режим</span>
+<span id="stMode">—</span>
+</div>
+
+<div class="stat">
+<span class="statlabel">Імпульсів</span>
+<span id="stPulses">0</span>
+</div>
+
+<div class="stat">
+<span class="statlabel">Пакетів</span>
+<span id="stBursts">0</span>
+</div>
+
+<div class="stat">
+<span class="statlabel">Час роботи</span>
+<span id="stTime">0:00</span>
+</div>
+
+<div class="stat">
+<span class="statlabel">Wi-Fi</span>
+<span id="stWifi">—</span>
+</div>
+
+</div>
+
+<div class="bigbuttons">
+
+<button
+id="btnStart"
+type="button"
+class="btn-start">
+
+▶ Старт
+
+</button>
+
+<button
+id="btnStop"
+type="button"
+class="btn-stop">
+
+■ Стоп
+
+</button>
+
+<button
+id="btnSingle"
+type="button"
+class="btn-single">
+
+⚡ Імпульс
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ======================================== -->
+<!-- PULSE PARAMETERS -->
+<!-- ======================================== -->
+
+<div class="card">
+
+<h2>Параметри імпульсів</h2>
+
+<div class="row">
+
+<label>Режим роботи</label>
+
+<select id="pMode">
+
+<option value="burst">Пакет імпульсів</option>
+<option value="continuous">Безперервний</option>
+<option value="single">Одиничний імпульс</option>
+<option value="hold">Постійно відкрита (очистка)</option>
+
+</select>
+
+</div>
+
+<div class="row">
+
+<label>Довжина імпульсу, мс</label>
+
+<input
+id="pPulse"
+type="number"
+min="0.1"
+max="1000"
+step="0.1">
+
+</div>
+
+<div class="row">
+
+<label>Період, мс</label>
+
+<input
+id="pPeriod"
+type="number"
+min="0.2"
+max="60000"
+step="0.1">
+
+</div>
+
+<div class="row">
+
+<label>Імпульсів у пакеті (0 = ∞)</label>
+
+<input
+id="pPulses"
+type="number"
+min="0"
+max="65535"
+step="1">
+
+</div>
+
+<div class="row">
+
+<label>Період пакета, мс (0 = без паузи)</label>
+
+<input
+id="pBurstPeriod"
+type="number"
+min="0"
+max="3600000"
+step="1">
+
+</div>
+
+<div class="hint" id="infoFreq">—</div>
+
+<div class="hint" id="infoBurst">—</div>
+
+<div class="hint" id="modeHint">—</div>
+
+<div class="buttons">
+
+<button
+id="btnDefaults"
+type="button">
+
+💾 Зберегти як типові
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ======================================== -->
+<!-- SAFETY -->
+<!-- ======================================== -->
+
+<div class="card">
+
+<h2>Безпека</h2>
+
+<div class="row">
+
+<label>Макс. час відкритого стану (режим "очистка"), с (0 = ∞)</label>
+
+<input
+id="hHoldTimeout"
+type="number"
+min="0"
+max="3600"
+step="1">
+
+</div>
+
+<div class="row">
+
+<label>Автостоп тесту, с (0 = вимкнено)</label>
+
+<input
+id="hAutoStop"
+type="number"
+min="0"
+max="86400"
+step="1">
+
+</div>
+
+<div class="row check">
+
+<input
+id="hInvert"
+type="checkbox">
+
+<label for="hInvert">
+
+Інвертувати вихід (опторозв'язка з інверсією сигналу)
+
+</label>
+
+</div>
+
+</div>
+
+<!-- ======================================== -->
+<!-- NETWORK -->
+<!-- ======================================== -->
+
+<div class="card">
+
+<h2>Мережа</h2>
+
+<div class="row">
+
+<label>Назва пристрою</label>
+
+<input
+id="deviceName"
+type="text"
+maxlength="32">
+
+</div>
+
+<div class="row">
+
+<label>WiFi SSID</label>
+
+<input
+id="ssid"
+type="text">
+
+</div>
+
+<div class="row">
+
+<label>Пароль</label>
+
+<div class="passwordBox">
+
+<input
+id="password"
+type="password">
+
+<button
+type="button"
+id="showPassword">
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<div class="row check">
+
+<input
+id="dhcp"
+type="checkbox">
+
+<label for="dhcp">
+
+Використовувати DHCP
+
+</label>
+
+</div>
+
+<div class="row">
+
+<label>IP адреса</label>
+
+<input
+id="ip"
+type="text">
+
+</div>
+
+<div class="row">
+
+<label>Шлюз</label>
+
+<input
+id="gateway"
+type="text">
+
+</div>
+
+<div class="row">
+
+<label>Маска підмережі</label>
+
+<input
+id="subnet"
+type="text">
+
+</div>
+
+<div class="row">
+
+<label>DNS 1</label>
+
+<input
+id="dns1"
+type="text">
+
+</div>
+
+<div class="row">
+
+<label>DNS 2</label>
+
+<input
+id="dns2"
+type="text">
+
+</div>
+
+</div>
+
+<!-- ======================================== -->
+<!-- SYSTEM BUTTONS -->
+<!-- ======================================== -->
+
+<div class="buttons">
+
+<button
+id="btnSave"
+type="button">
+
+💾 Зберегти
+
+</button>
+
+<button
+id="btnRestart"
+type="button">
+
+🔄 Перезапуск
+
+</button>
+
+<button
+id="btnFactory"
+type="button"
+class="btn-danger">
+
+⚠ Скидання
+
+</button>
+
+</div>
+
+<div id="toast"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
