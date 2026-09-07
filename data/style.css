@@ -180,28 +180,12 @@ select:disabled{
     width:fit-content;
 }
 
-.badge.idle{
+.badge.stop{
     background:#78909c;
 }
 
-.badge.pulse{
+.badge.run{
     background:#2e7d32;
-}
-
-.badge.gap{
-    background:#f9a825;
-}
-
-.badge.burst_wait{
-    background:#ef6c00;
-}
-
-.badge.hold{
-    background:#c62828;
-}
-
-.badge.done{
-    background:#1565c0;
 }
 
 /* ===================== Кнопки ===================== */

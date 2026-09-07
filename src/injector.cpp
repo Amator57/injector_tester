@@ -1,5 +1,7 @@
 #include "injector.h"
 
+#include "soc/gpio_struct.h"
+
 //======================================================
 // Апаратний таймер (1 МГц, 64 біт)
 //======================================================
@@ -32,9 +34,9 @@ static volatile uint32_t v_stopMs = 0;
 // Швидке керування пінами (прямі регістри, для ISR)
 //======================================================
 
-static inline void IRAM_ATTR rawHigh(uint8_t pin) { digitalWrite(pin, HIGH); }
+static inline void IRAM_ATTR rawHigh(uint8_t pin) { GPIO.out_w1ts.val = (1UL << pin); }
 
-static inline void IRAM_ATTR rawLow(uint8_t pin) { digitalWrite(pin, LOW); }
+static inline void IRAM_ATTR rawLow(uint8_t pin) { GPIO.out_w1tc.val = (1UL << pin); }
 
 //------------------------------------------------------
 
@@ -70,7 +72,7 @@ static inline void IRAM_ATTR outWrite(bool on) {
 static inline void IRAM_ATTR setAlarm(uint64_t us) {
   timerWrite(timer, 0);
   timerStart(timer);
-  timerAlarm(timer, us, true, 0);
+  timerAlarm(timer, us, false, 0);
 }
 
 static inline void IRAM_ATTR stopAlarm() {

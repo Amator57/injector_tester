@@ -10,12 +10,8 @@ const $ = id => document.getElementById(id);
 //=========================================================
 
 const STATE_TEXT = {
-    idle: 'Готовий',
-    pulse: 'Імпульс',
-    gap: 'Пауза',
-    burst_wait: 'Очікування пакета',
-    hold: 'Відкрито',
-    done: 'Завершено'
+    stop: 'Стоп',
+    run: 'Генерація'
 };
 
 const MODE_TEXT = {
@@ -188,8 +184,10 @@ function poll() {
     fetch('/api/status')
         .then(r => r.json())
         .then(s => {
-            $('stState').textContent = STATE_TEXT[s.state] || s.state;
-            $('stState').className = 'badge ' + (s.state || 'idle');
+            let st = s.running ? 'run' : 'stop';
+
+            $('stState').textContent = STATE_TEXT[st];
+            $('stState').className = 'badge ' + st;
 
             $('stMode').textContent = MODE_TEXT[s.mode] || s.mode;
             $('stPulses').textContent = s.pulses;
