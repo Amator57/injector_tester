@@ -234,7 +234,9 @@ void WebManager::startAP() {
 
   WiFi.mode(WIFI_AP);
 
-  WiFi.softAP(apName.c_str());
+  const char* apPassword = "Inj26-AP";
+
+  WiFi.softAP(apName.c_str(), apPassword);
 
   Serial.println();
 
@@ -243,6 +245,10 @@ void WebManager::startAP() {
   Serial.print("SSID : ");
 
   Serial.println(apName);
+
+  Serial.print("Pass : ");
+
+  Serial.println(apPassword);
 
   Serial.print("IP   : ");
 
